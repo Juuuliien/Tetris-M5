@@ -40,7 +40,7 @@ namespace Tetris_M5.Piece
             for (int arrayIndex = 0; arrayIndex < squaresOfThePiece.Length; arrayIndex++)
             {
                 squaresOfThePiece[arrayIndex].X--;
-            }
+            } 
         }
 
         /// <summary>
@@ -53,5 +53,31 @@ namespace Tetris_M5.Piece
                 squaresOfThePiece[arrayIndex].X++;
             }
         }
+
+        /// <summary>
+        /// Assigns the starting values for the piece
+        /// </summary>
+        public virtual void assignStartingValues() { }
+
+        /// <summary>
+        /// Rotates the piece 90 degrees clockwise
+        /// </summary>
+        public virtual void rotation90() { }
+
+        /// <summary>
+        /// Rotates the piece 180 degrees clockwise
+        /// </summary>
+        public virtual void rotation180() { }
+
+        /// <summary>
+        /// Rotates the piece 270 degrees clockwise
+        /// </summary>
+        public virtual void rotation270() { }
+
+        /// <summary>
+        /// Rotates the piece 360 degrees clockwise
+        /// </summary>
+        public virtual void rotation360() { }
+
     }
 }
