@@ -1,8 +1,8 @@
 namespace Tetris_M5
 {
-    public partial class Form1 : Form
+    public partial class Presentation : Form
     {
-        public Form1()
+        public Presentation()
         {
             InitializeComponent();
         }

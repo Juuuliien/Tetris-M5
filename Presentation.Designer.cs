@@ -1,6 +1,6 @@
 ﻿namespace Tetris_M5
 {
-    partial class Form1
+    partial class Presentation
     {
         /// <summary>
         ///  Required designer variable.
