@@ -55,11 +55,6 @@ namespace Tetris_M5.Piece
         }
 
         /// <summary>
-        /// Assigns the starting values for the piece
-        /// </summary>
-        public virtual void assignStartingValues() { }
-
-        /// <summary>
         /// Rotates the piece 90 degrees clockwise
         /// </summary>
         public virtual void rotation90() { }

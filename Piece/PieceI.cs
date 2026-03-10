@@ -9,9 +9,9 @@ namespace Tetris_M5.Piece
     internal class PieceI : Piece
     {
         /// <summary>
-        /// Assigns the starting values for the piece
+        /// Constructor for the piece class and assigns the starting values for the piece
         /// </summary>
-        public override void assignStartingValues()
+        public PieceI()
         {
             // Set the color and tilt of the piece
             pieceColor = Color.Cyan;
@@ -27,7 +27,7 @@ namespace Tetris_M5.Piece
             squaresOfThePiece[0].X = 3;
             squaresOfThePiece[1].X = 4;
             squaresOfThePiece[2].X = 5;
-            squaresOfThePiece[3].X = 6;            
+            squaresOfThePiece[3].X = 6;
         }
 
         /// <summary>
