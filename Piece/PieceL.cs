@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tetris_M5.Piece
+namespace Tetris_M5.Pieces
 {
     internal class PieceL : Piece
     {

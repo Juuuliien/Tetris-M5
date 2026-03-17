@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tetris_M5.Piece
+namespace Tetris_M5.Pieces
 {
-    internal class Piece
+    public class Piece
     {
         // Set parameters for the piece
         public Color pieceColor;
@@ -51,6 +51,23 @@ namespace Tetris_M5.Piece
             for (int arrayIndex = 0; arrayIndex < squaresOfThePiece.Length; arrayIndex++)
             {
                 squaresOfThePiece[arrayIndex].X++;
+            }
+        }
+
+        /// <summary>
+        /// Copies the current piece's properties to another piece.        
+        /// </summary>
+        /// <param name="targetPiece">The piece that will receive the copied values.</param>
+        public void CopyTo(Piece targetPiece)
+        {
+            // Copy the color, tilt, and square positions to the target piece
+            targetPiece.pieceColor = this.pieceColor;
+            targetPiece.pieceTilt = this.pieceTilt;
+
+            // Copy the positions of the squares of the piece
+            for (int i = 0; i < this.squaresOfThePiece.Length; i++)
+            {
+                targetPiece.squaresOfThePiece[i] = this.squaresOfThePiece[i];
             }
         }
 

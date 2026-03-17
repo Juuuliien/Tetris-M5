@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using Tetris_M5;
+using Tetris_M5.Pieces;
 
-namespace Tetris_M5
+
+namespace TetrisDomain
 {
-    internal class Game
+    public class Game
     {
     }
 }
