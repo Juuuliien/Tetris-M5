@@ -8,14 +8,16 @@ namespace Tetris_M5
 {
     public class Board
     {
-        int width;
-        int height;
 
-        // Public array to store the grid colors
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+
+
+        // Array to store the grid colors
         public Color[,] board;
-        
+
         // List to keep track of which rows need to be removed
-        public List<int> linesToDelete;
+        private List<int> linesToDelete;
 
         /// <summary>
         /// Constructor for the GameBoard class. Initializes the grid with empty (white) cells.
@@ -24,8 +26,8 @@ namespace Tetris_M5
         /// <param name="height">The number of rows in the grid.</param>
         public Board(int width, int height)
         {
-            this.width = width;
-            this.height = height;
+            this.Width = width;
+            this.Height = height;
 
             this.board = new Color[height, width];
             this.linesToDelete = new List<int>();
@@ -72,7 +74,7 @@ namespace Tetris_M5
         public bool IsCellFree(Point cell)
         {
             // Check if the cell is out of bounds
-            if (cell.X < 0 || cell.X >= width || cell.Y < 0 || cell.Y >= height)
+            if (cell.X < 0 || cell.X >= Width || cell.Y < 0 || cell.Y >= Height)
             {
                 return false;
             }
@@ -88,7 +90,7 @@ namespace Tetris_M5
         public bool IsTopAreaClear()
         {
             // Checking the second row (index 1) to see if any block is permanently placed there
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < Width; x++)
             {
                 if (board[1, x] != Color.White)
                 {
@@ -112,7 +114,7 @@ namespace Tetris_M5
                 int y = movingPiece.squaresOfThePiece[i].Y;
                 bool isLineFull = true;
 
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < Width; x++)
                 {
                     if (board[y, x] == Color.White)
                     {
@@ -161,7 +163,7 @@ namespace Tetris_M5
         /// <param name="rowIndex">The index of the row to clear.</param>
         private void ClearLine(int rowIndex)
         {
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < Width; x++)
             {
                 board[rowIndex, x] = Color.White;
             }
@@ -175,7 +177,7 @@ namespace Tetris_M5
         {
             for (int y = clearedRowIndex; y >= 1; y--)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < Width; x++)
                 {
                     // Move the color from the cell above to the current cell
                     board[y, x] = board[y - 1, x];
@@ -183,7 +185,7 @@ namespace Tetris_M5
             }
 
             // Ensure the very top row is completely cleared after shifting
-            for (int x = 0; x < width; x++)
+            for (int x = 0; x < Width; x++)
             {
                 board[0, x] = Color.White;
             }

@@ -24,7 +24,7 @@ namespace Tetris_M5.Pieces
         /// <summary>
         /// Method to move the piece down one square
         /// </summary>
-        public void fallOneSquare()
+        public void FallOneSquare()
         {
             for (int arrayIndex = 0; arrayIndex < squaresOfThePiece.Length; arrayIndex++)
             {
@@ -35,7 +35,7 @@ namespace Tetris_M5.Pieces
         /// <summary>
         /// Method to move the piece left one square
         /// </summary>
-        public void moveLeft()
+        public void MoveLeft()
         {
             for (int arrayIndex = 0; arrayIndex < squaresOfThePiece.Length; arrayIndex++)
             {
@@ -46,7 +46,7 @@ namespace Tetris_M5.Pieces
         /// <summary>
         /// Method to move the piece right one square
         /// </summary>
-        public void moveRight()
+        public void MoveRight()
         {
             for (int arrayIndex = 0; arrayIndex < squaresOfThePiece.Length; arrayIndex++)
             {
@@ -55,41 +55,43 @@ namespace Tetris_M5.Pieces
         }
 
         /// <summary>
-        /// Copies the current piece's properties to another piece.        
+        /// Clones the piece, creating a new instance with the same properties and values.
         /// </summary>
-        /// <param name="targetPiece">The piece that will receive the copied values.</param>
-        public void CopyTo(Piece targetPiece)
+        /// <returns>Clone of the piece</returns>
+        public Piece Clone()
         {
-            // Copy the color, tilt, and square positions to the target piece
-            targetPiece.pieceColor = this.pieceColor;
-            targetPiece.pieceTilt = this.pieceTilt;
+            // Create a shallow copy of the current piece
+            Piece clone = (Piece)this.MemberwiseClone();
 
-            // Copy the positions of the squares of the piece
+            // Create a new array for the squares and copy each Point to ensure a deep copy
+            clone.squaresOfThePiece = new Point[this.squaresOfThePiece.Length];
             for (int i = 0; i < this.squaresOfThePiece.Length; i++)
             {
-                targetPiece.squaresOfThePiece[i] = this.squaresOfThePiece[i];
+                clone.squaresOfThePiece[i] = this.squaresOfThePiece[i];
             }
+
+            return clone;
         }
 
         /// <summary>
         /// Rotates the piece 90 degrees clockwise
         /// </summary>
-        public virtual void rotation90() { }
+        public virtual void Rotation90() { }
 
         /// <summary>
         /// Rotates the piece 180 degrees clockwise
         /// </summary>
-        public virtual void rotation180() { }
+        public virtual void Rotation180() { }
 
         /// <summary>
         /// Rotates the piece 270 degrees clockwise
         /// </summary>
-        public virtual void rotation270() { }
+        public virtual void Rotation270() { }
 
         /// <summary>
         /// Rotates the piece 360 degrees clockwise
         /// </summary>
-        public virtual void rotation360() { }
+        public virtual void Rotation360() { }
 
     }
 }

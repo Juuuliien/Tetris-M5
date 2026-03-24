@@ -30,7 +30,7 @@ namespace Tetris_M5.Pieces
         /// <summary>
         /// Rotates the piece 90 degrees clockwise
         /// </summary>
-        public override void rotation90()
+        public override void Rotation90()
         {
             //     actual            future
             //                         
@@ -53,7 +53,7 @@ namespace Tetris_M5.Pieces
         /// <summary>
         /// Rotates the piece 180 degrees clockwise
         /// </summary>
-        public override void rotation180()
+        public override void Rotation180()
         {
             //     actual           future
             //                         
@@ -76,7 +76,7 @@ namespace Tetris_M5.Pieces
         /// <summary>
         /// Rotates the piece 270 degrees clockwise
         /// </summary>
-        public override void rotation270()
+        public override void Rotation270()
         {
             //     actual          future
             //                         
@@ -99,7 +99,7 @@ namespace Tetris_M5.Pieces
         /// <summary>
         /// Rotates the piece 360 degrees clockwise
         /// </summary>
-        public override void rotation360()
+        public override void Rotation360()
         {
             //      actual          future
             //                         
