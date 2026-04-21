@@ -47,8 +47,7 @@ namespace Tetris_M5
                 case 1: basePoints = 100; break;
                 case 2: basePoints = 300; break;
                 case 3: basePoints = 500; break;
-                case 4: basePoints = 800; break; 
-                default: basePoints = 1000; break;
+                case 4: basePoints = 800; break;                 
             }
 
             // Multiply the base points by the current level to increase difficulty
