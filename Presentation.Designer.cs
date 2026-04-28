@@ -32,27 +32,27 @@
             GameTimer = new System.Windows.Forms.Timer(components);
             gameCanvas = new PictureBox();
             panelNextPiece = new Panel();
-            label1 = new Label();
+            lblNext = new Label();
             nextPieceCanvas = new PictureBox();
             panelScore = new Panel();
             lblLines = new Label();
-            label6 = new Label();
+            lblTitleLines = new Label();
             lblLevel = new Label();
             lblScore = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            panelStartResume = new Panel();
-            lblStartResume = new Label();
-            label_tetris = new Label();
-            pictureBoxTheme = new PictureBox();
+            lblTitleLevel = new Label();
+            lblTitleScore = new Label();
+            pictureBoxStartStop = new PictureBox();
             pictureBoxReset = new PictureBox();
+            pictureBox1 = new PictureBox();
+            pictureBoxTheme = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)gameCanvas).BeginInit();
             panelNextPiece.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nextPieceCanvas).BeginInit();
             panelScore.SuspendLayout();
-            panelStartResume.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxTheme).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxStartStop).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxReset).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxTheme).BeginInit();
             SuspendLayout();
             // 
             // GameTimer
@@ -63,32 +63,33 @@
             // gameCanvas
             // 
             gameCanvas.BackColor = Color.FromArgb(4, 5, 10);
-            gameCanvas.Location = new Point(82, 118);
+            gameCanvas.Location = new Point(82, 138);
             gameCanvas.Name = "gameCanvas";
             gameCanvas.Size = new Size(300, 630);
             gameCanvas.TabIndex = 0;
             gameCanvas.TabStop = false;
+            gameCanvas.Paint += GameCanvas_Paint;
             // 
             // panelNextPiece
             // 
             panelNextPiece.BackColor = Color.FromArgb(4, 5, 10);
-            panelNextPiece.Controls.Add(label1);
+            panelNextPiece.Controls.Add(lblNext);
             panelNextPiece.Controls.Add(nextPieceCanvas);
-            panelNextPiece.Location = new Point(410, 118);
+            panelNextPiece.Location = new Point(410, 138);
             panelNextPiece.Name = "panelNextPiece";
             panelNextPiece.Size = new Size(150, 146);
             panelNextPiece.TabIndex = 2;
             // 
-            // label1
+            // lblNext
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(36, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(76, 32);
-            label1.TabIndex = 0;
-            label1.Text = "NEXT";
+            lblNext.AutoSize = true;
+            lblNext.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNext.ForeColor = SystemColors.ButtonFace;
+            lblNext.Location = new Point(36, 5);
+            lblNext.Name = "lblNext";
+            lblNext.Size = new Size(76, 32);
+            lblNext.TabIndex = 0;
+            lblNext.Text = "NEXT";
             // 
             // nextPieceCanvas
             // 
@@ -97,19 +98,20 @@
             nextPieceCanvas.Size = new Size(100, 80);
             nextPieceCanvas.TabIndex = 0;
             nextPieceCanvas.TabStop = false;
+            nextPieceCanvas.Paint += NextPieceCanvas_Paint;
             // 
             // panelScore
             // 
             panelScore.BackColor = Color.FromArgb(4, 5, 10);
             panelScore.Controls.Add(lblLines);
-            panelScore.Controls.Add(label6);
+            panelScore.Controls.Add(lblTitleLines);
             panelScore.Controls.Add(lblLevel);
             panelScore.Controls.Add(lblScore);
-            panelScore.Controls.Add(label3);
-            panelScore.Controls.Add(label2);
-            panelScore.Location = new Point(410, 292);
+            panelScore.Controls.Add(lblTitleLevel);
+            panelScore.Controls.Add(lblTitleScore);
+            panelScore.Location = new Point(410, 312);
             panelScore.Name = "panelScore";
-            panelScore.Size = new Size(150, 229);
+            panelScore.Size = new Size(150, 391);
             panelScore.TabIndex = 3;
             // 
             // lblLines
@@ -123,16 +125,16 @@
             lblLines.TabIndex = 6;
             lblLines.Text = "7 ";
             // 
-            // label6
+            // lblTitleLines
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = SystemColors.ButtonFace;
-            label6.Location = new Point(17, 158);
-            label6.Name = "label6";
-            label6.Size = new Size(72, 32);
-            label6.TabIndex = 5;
-            label6.Text = "Lines";
+            lblTitleLines.AutoSize = true;
+            lblTitleLines.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitleLines.ForeColor = SystemColors.ButtonFace;
+            lblTitleLines.Location = new Point(17, 158);
+            lblTitleLines.Name = "lblTitleLines";
+            lblTitleLines.Size = new Size(72, 32);
+            lblTitleLines.TabIndex = 5;
+            lblTitleLines.Text = "Lines";
             // 
             // lblLevel
             // 
@@ -156,81 +158,79 @@
             lblScore.TabIndex = 3;
             lblScore.Text = "1500 pts";
             // 
-            // label3
+            // lblTitleLevel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = SystemColors.ButtonFace;
-            label3.Location = new Point(18, 86);
-            label3.Name = "label3";
-            label3.Size = new Size(72, 32);
-            label3.TabIndex = 2;
-            label3.Text = "Level";
+            lblTitleLevel.AutoSize = true;
+            lblTitleLevel.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitleLevel.ForeColor = SystemColors.ButtonFace;
+            lblTitleLevel.Location = new Point(18, 86);
+            lblTitleLevel.Name = "lblTitleLevel";
+            lblTitleLevel.Size = new Size(72, 32);
+            lblTitleLevel.TabIndex = 2;
+            lblTitleLevel.Text = "Level";
             // 
-            // label2
+            // lblTitleScore
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(17, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(77, 32);
-            label2.TabIndex = 1;
-            label2.Text = "Score";
+            lblTitleScore.AutoSize = true;
+            lblTitleScore.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitleScore.ForeColor = SystemColors.ButtonFace;
+            lblTitleScore.Location = new Point(17, 11);
+            lblTitleScore.Name = "lblTitleScore";
+            lblTitleScore.Size = new Size(77, 32);
+            lblTitleScore.TabIndex = 1;
+            lblTitleScore.Text = "Score";
             // 
-            // panelStartResume
+            // pictureBoxStartStop
             // 
-            panelStartResume.BackColor = Color.FromArgb(4, 5, 10);
-            panelStartResume.Controls.Add(lblStartResume);
-            panelStartResume.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            panelStartResume.Location = new Point(407, 591);
-            panelStartResume.Name = "panelStartResume";
-            panelStartResume.Size = new Size(150, 33);
-            panelStartResume.TabIndex = 5;
-            // 
-            // lblStartResume
-            // 
-            lblStartResume.AutoSize = true;
-            lblStartResume.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblStartResume.ForeColor = Color.White;
-            lblStartResume.Location = new Point(46, 4);
-            lblStartResume.Name = "lblStartResume";
-            lblStartResume.Size = new Size(56, 25);
-            lblStartResume.TabIndex = 0;
-            lblStartResume.Text = "Start";
-            // 
-            // label_tetris
-            // 
-            label_tetris.AutoSize = true;
-            label_tetris.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_tetris.ForeColor = Color.White;
-            label_tetris.Location = new Point(226, 27);
-            label_tetris.Name = "label_tetris";
-            label_tetris.Size = new Size(183, 65);
-            label_tetris.TabIndex = 6;
-            label_tetris.Text = "TETRIS";
-            // 
-            // pictureBoxTheme
-            // 
-            pictureBoxTheme.BackColor = Color.FromArgb(4, 5, 10);
-            pictureBoxTheme.Image = Properties.Resources.reset_white;
-            pictureBoxTheme.Location = new Point(407, 661);
-            pictureBoxTheme.Name = "pictureBoxTheme";
-            pictureBoxTheme.Size = new Size(65, 59);
-            pictureBoxTheme.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxTheme.TabIndex = 0;
-            pictureBoxTheme.TabStop = false;
+            pictureBoxStartStop.BackColor = Color.FromArgb(4, 5, 10);
+            pictureBoxStartStop.Image = Properties.Resources.play_white;
+            pictureBoxStartStop.Location = new Point(406, 723);
+            pictureBoxStartStop.Name = "pictureBoxStartStop";
+            pictureBoxStartStop.Size = new Size(45, 45);
+            pictureBoxStartStop.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxStartStop.TabIndex = 0;
+            pictureBoxStartStop.TabStop = false;
+            pictureBoxStartStop.Click += pictureBoxStartStop_Click;
+            pictureBoxStartStop.MouseEnter += CustomControl_MouseEnter;
+            pictureBoxStartStop.MouseLeave += CustomControl_MouseLeave;
             // 
             // pictureBoxReset
             // 
             pictureBoxReset.BackColor = Color.FromArgb(4, 5, 10);
             pictureBoxReset.Image = Properties.Resources.reset_white;
-            pictureBoxReset.Location = new Point(492, 661);
+            pictureBoxReset.Location = new Point(515, 723);
             pictureBoxReset.Name = "pictureBoxReset";
-            pictureBoxReset.Size = new Size(68, 59);
+            pictureBoxReset.Size = new Size(45, 45);
             pictureBoxReset.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxReset.TabIndex = 7;
             pictureBoxReset.TabStop = false;
+            pictureBoxReset.Click += pictureBoxReset_Click;
+            pictureBoxReset.MouseEnter += CustomControl_MouseEnter;
+            pictureBoxReset.MouseLeave += CustomControl_MouseLeave;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.logo_tetris;
+            pictureBox1.Location = new Point(210, 33);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(214, 72);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBoxTheme
+            // 
+            pictureBoxTheme.BackColor = Color.FromArgb(4, 5, 10);
+            pictureBoxTheme.Image = Properties.Resources.sun_white;
+            pictureBoxTheme.Location = new Point(459, 723);
+            pictureBoxTheme.Name = "pictureBoxTheme";
+            pictureBoxTheme.Size = new Size(45, 45);
+            pictureBoxTheme.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxTheme.TabIndex = 9;
+            pictureBoxTheme.TabStop = false;
+            pictureBoxTheme.Click += pictureBoxTheme_Click;
+            pictureBoxTheme.MouseEnter += CustomControl_MouseEnter;
+            pictureBoxTheme.MouseLeave += CustomControl_MouseLeave;
             // 
             // Presentation
             // 
@@ -238,10 +238,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(27, 39, 55);
             ClientSize = new Size(655, 820);
-            Controls.Add(pictureBoxReset);
             Controls.Add(pictureBoxTheme);
-            Controls.Add(label_tetris);
-            Controls.Add(panelStartResume);
+            Controls.Add(pictureBox1);
+            Controls.Add(pictureBoxReset);
+            Controls.Add(pictureBoxStartStop);
             Controls.Add(panelScore);
             Controls.Add(panelNextPiece);
             Controls.Add(gameCanvas);
@@ -254,12 +254,11 @@
             ((System.ComponentModel.ISupportInitialize)nextPieceCanvas).EndInit();
             panelScore.ResumeLayout(false);
             panelScore.PerformLayout();
-            panelStartResume.ResumeLayout(false);
-            panelStartResume.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxTheme).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxStartStop).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxReset).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxTheme).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -268,18 +267,17 @@
         private PictureBox gameCanvas;
         private Panel panelNextPiece;
         private Panel panelScore;
-        private Panel panelStartResume;
-        private Label label_tetris;
-        private Label label1;
-        private Label label3;
-        private Label label2;
+        private Label lblNext;
+        private Label lblTitleLevel;
+        private Label lblTitleScore;
         private Label lblScore;
         private Label lblLevel;
         private PictureBox nextPieceCanvas;
         private Label lblLines;
-        private Label label6;
-        private Label lblStartResume;
-        private PictureBox pictureBoxTheme;
+        private Label lblTitleLines;
+        private PictureBox pictureBoxStartStop;
         private PictureBox pictureBoxReset;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBoxTheme;
     }
 }

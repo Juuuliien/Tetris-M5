@@ -63,6 +63,76 @@ namespace Tetris_M5.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logo_tetris {
+            get {
+                object obj = ResourceManager.GetObject("logo-tetris", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap moon_black {
+            get {
+                object obj = ResourceManager.GetObject("moon-black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap moon_white {
+            get {
+                object obj = ResourceManager.GetObject("moon-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pause_black {
+            get {
+                object obj = ResourceManager.GetObject("pause-black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pause_white {
+            get {
+                object obj = ResourceManager.GetObject("pause-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap play_black {
+            get {
+                object obj = ResourceManager.GetObject("play-black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap play_white {
+            get {
+                object obj = ResourceManager.GetObject("play-white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap reset_black {
             get {
                 object obj = ResourceManager.GetObject("reset-black", resourceCulture);
@@ -83,9 +153,9 @@ namespace Tetris_M5.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap settings_black {
+        internal static System.Drawing.Bitmap sun_black {
             get {
-                object obj = ResourceManager.GetObject("settings-black", resourceCulture);
+                object obj = ResourceManager.GetObject("sun-black", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +163,9 @@ namespace Tetris_M5.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap settings_white {
+        internal static System.Drawing.Bitmap sun_white {
             get {
-                object obj = ResourceManager.GetObject("settings-white", resourceCulture);
+                object obj = ResourceManager.GetObject("sun-white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
