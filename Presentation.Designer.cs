@@ -69,6 +69,7 @@
             gameCanvas.TabIndex = 0;
             gameCanvas.TabStop = false;
             gameCanvas.Paint += GameCanvas_Paint;
+            gameCanvas.MouseDown += gameCanvas_MouseDown;
             // 
             // panelNextPiece
             // 

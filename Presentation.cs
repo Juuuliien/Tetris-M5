@@ -27,7 +27,7 @@ namespace Tetris_M5
             this.KeyPreview = true;
 
             // Initialisation of the game logic
-            tetrisGame = new Game();  
+            tetrisGame = new Game();
             ApplyTheme();
             UpdateScoreDisplay();
         }
@@ -87,7 +87,7 @@ namespace Tetris_M5
                 this.pictureBoxStartStop.Image = Properties.Resources.play_black;
                 this.pictureBoxTheme.Image = Properties.Resources.moon_black;
                 this.pictureBoxReset.Image = Properties.Resources.reset_black;
-            }            
+            }
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Tetris_M5
         {
             // Display 'Play' icon if the game is stopped or paused
             bool showPlayIcon = (!isGameStarted || isPaused);
-                        
+
             if (isDarkMode)
             {
                 pictureBoxStartStop.Image = showPlayIcon
@@ -123,8 +123,8 @@ namespace Tetris_M5
             lblLines.Text = tetrisGame.PlayerScore.TotalLinesCleared.ToString();
 
             // Dynamic speed calculation
-            int baseSpeed = 600; 
-            int speedDecreasePerLevel = 50; 
+            int baseSpeed = 600;
+            int speedDecreasePerLevel = 50;
             int newInterval = baseSpeed - ((tetrisGame.PlayerScore.Level - 1) * speedDecreasePerLevel);
 
             // Ensure the game doesn't become impossibly fast (cap at 100ms)
@@ -150,6 +150,26 @@ namespace Tetris_M5
                 GameTimer.Stop();
                 gameCanvas.Invalidate();
             }
+        }
+
+        /// <summary>
+        /// Performs a hard drop of the current piece, instantly locking it in place and refreshing the game state.
+        /// </summary>
+        private void PerformHardDrop()
+        {
+            // Ignore hard drop if the game is not active
+            if (!isGameStarted || isPaused || tetrisGame.isGameOver) return;
+
+            // Move the piece down until it is locked in place
+            while (!tetrisGame.isPieceLocked)
+            {
+                tetrisGame.UpdateGame("down");
+            }
+
+            // Refresh the game canvas and score display after the hard drop
+            gameCanvas.Invalidate();
+            nextPieceCanvas.Invalidate();
+            UpdateScoreDisplay();
         }
 
         /// <summary>
@@ -180,8 +200,11 @@ namespace Tetris_M5
                 case Keys.Down:
                     tetrisGame.UpdateGame("down");
                     break;
+                case Keys.Space:
+                    PerformHardDrop();
+                    return;
             }
-            
+
             gameCanvas.Invalidate();
             UpdateScoreDisplay();
         }
@@ -232,15 +255,15 @@ namespace Tetris_M5
                 // Use larger font for the "Game Over" message and a smaller font for the score, both centered on the canvas
                 using (Font titleFont = new Font("Segoe UI", 24, FontStyle.Bold))
                 using (Font scoreFont = new Font("Segoe UI", 12, FontStyle.Regular))
-                using (Brush textBrush = new SolidBrush(Color.White)) 
-                {                    
+                using (Brush textBrush = new SolidBrush(Color.White))
+                {
                     StringFormat format = new StringFormat();
-                    format.Alignment = StringAlignment.Center;  
+                    format.Alignment = StringAlignment.Center;
                     format.LineAlignment = StringAlignment.Center;
-                    
+
                     float centerX = gameCanvas.Width / 2f;
                     float centerY = gameCanvas.Height / 2f;
-                    
+
                     g.DrawString(gameOverText, titleFont, textBrush, centerX, centerY - 20, format);
                     g.DrawString(scoreText, scoreFont, textBrush, centerX, centerY + 25, format);
                 }
@@ -284,7 +307,7 @@ namespace Tetris_M5
 
             // Draw the piece squares with the calculated offsets
             foreach (Point p in tetrisGame.nextPiece.squaresOfThePiece)
-            {                
+            {
                 int drawX = offsetX + (p.X - minX) * previewCellSize;
                 int drawY = offsetY + (p.Y - minY) * previewCellSize;
 
@@ -317,13 +340,13 @@ namespace Tetris_M5
         {
             // If the game hasn't started yet, start it. Otherwise, toggle pause/play.
             if (!isGameStarted)
-            {               
+            {
                 isGameStarted = true;
                 pictureBoxReset.Enabled = true;
                 GameTimer.Start();
             }
             else if (!tetrisGame.isGameOver)
-            {                
+            {
                 isPaused = !isPaused;
                 if (isPaused) GameTimer.Stop();
                 else GameTimer.Start();
@@ -354,7 +377,7 @@ namespace Tetris_M5
         /// </summary>
         private void pictureBoxReset_Click(object sender, EventArgs e)
         {
-            
+
             if (!pictureBoxReset.Enabled) return;
 
             // Reinitialize the game state and UI elements to start fresh
@@ -364,7 +387,7 @@ namespace Tetris_M5
             GameTimer.Stop();
             UpdateScoreDisplay();
             gameCanvas.Invalidate();
-            nextPieceCanvas.Invalidate();         
+            nextPieceCanvas.Invalidate();
             UpdateStartStopImage();
 
             // Return focus to the form so keyboard inputs are registered
@@ -378,10 +401,10 @@ namespace Tetris_M5
         {
             Control ctrl = sender as Control;
             if (ctrl != null && ctrl.Enabled)
-            {                
+            {
                 ctrl.BackColor = isDarkMode
                     ? Color.FromArgb(30, 40, 60)
-                    : Color.FromArgb(220, 225, 230); 
+                    : Color.FromArgb(220, 225, 230);
             }
         }
 
@@ -393,10 +416,23 @@ namespace Tetris_M5
             // Reset the background color to the default based on the current theme
             Control ctrl = sender as Control;
             if (ctrl != null && ctrl.Enabled)
-            {                
+            {
                 ctrl.BackColor = isDarkMode
                     ? Color.FromArgb(10, 14, 25)
                     : Color.FromArgb(197, 200, 205);
+            }
+        }
+
+        /// <summary>
+        /// Performs a hard drop of the current piece when the left mouse button is clicked on the game canvas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gameCanvas_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                PerformHardDrop();
             }
         }
     }
